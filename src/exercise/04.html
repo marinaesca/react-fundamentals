@@ -6,19 +6,109 @@
   <script src="https://unpkg.com/react@18.1.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+
   <script type="text/babel">
     // 🐨 Make a function called `message` which returns the JSX we want to share
+    // function message({children}) {
+    //   return <div className="message">{children}</div>
+    // }
 
     // 🐨 use that function in place of the divs below with:
     // 💰 {message({children: 'Hello World'})} {message({children: 'Goodbye World'})}
-    const element = (
-      <div className="container">
-        <div className="message">Hello World</div>
-        <div className="message">Goodbye World</div>
-      </div>
-    )
+    // const element = (
+    //   <div className="container">
+    //     {message({children: 'Hello World'})}
+    //     {message({children: 'Goodbye World'})}
+    //   </div>
+    // )
 
     // 💯 This is only the first step to making actual React components. The rest is in the extra credit!
-    ReactDOM.createRoot(document.getElementById('root')).render(element)
+    // ReactDOM.createRoot(document.getElementById('root')).render(element)
+
+    // const element_E1 = (
+    //   <div className="container">
+    //     {React.createElement(message, {children: 'Hello World'})}
+    //     {React.createElement(message, {children: 'Goodbye World'})}
+    //   </div>
+    // )
+    // ReactDOM.createRoot(document.getElementById('root')).render(element_E1)
+
+    // function Message({children}) {
+    //   return <div className="message">{children}</div>
+    // }
+    // const element_E2 = (
+    //   <div className="container">
+    //     <Message>2 Hello World 2</Message>
+    //     <Message>2 Goodbye World 2</Message>
+    //   </div>
+    // )
+    // ReactDOM.createRoot(document.getElementById('root')).render(element_E2)
+
+
+    // function Message({subject, greeting}) {
+    //   return (
+    //     <div className="message">
+    //       {greeting}, {subject}
+    //     </div>
+    //   )
+    // }
+    // Message.propTypes = {
+    //   subject(props, propName, componentName) {
+    //     const type = typeof props[propName]
+    //     if (type !== 'string') {
+    //       return new Error(
+    //         `Type mismatch: the component ${componentName} needs the prop
+    //         ${propName} to be of type ${type}`
+    //       )
+    //     }
+    //   },
+    // }
+    // const element_E3 = (
+    //   <div className="container">
+    //     <Message greeting={"3 Hello "} subject={"World 3"} />
+    //     <Message greeting={"3 Goodbye "} subject={"World 3"} />
+    //   </div>
+    // )
+    // ReactDOM.createRoot(document.getElementById('root')).render(element_E3)
+
+    // function Message({subject, greeting}) {
+    //   return (
+    //     <div className="message">
+    //       {greeting}, {subject}
+    //     </div>
+    //   )
+    // }
+    // Message.propTypes = {
+    //   subject: PropTypes.string.isRequired,
+    //   greeting: PropTypes.string.isRequired,
+    // }
+    // const element_E4 = (
+    //   <div className="container">
+    //     <Message greeting={"4 Hello "} subject={"World 4"} />
+    //     <Message greeting={"4 Goodbye "} subject={"World 4"} />
+    //   </div>
+    // )
+    // ReactDOM.createRoot(document.getElementById('root')).render(element_E4)
+
+    function Message({subject, greeting}) {
+      return (
+        <div className="message">
+          {greeting}, {subject}
+        </div>
+      )
+    }
+    Message.propTypes = {
+      subject: PropTypes.string.isRequired,
+      greeting: PropTypes.string.isRequired,
+    }
+    const element_E5 = (
+      <>
+        <Message greeting={"5 Hello "} subject={"World 5"} />
+        <Message greeting={"5 Goodbye "} subject={"World 5"} />
+      </>
+    )
+    ReactDOM.createRoot(document.getElementById('root')).render(element_E5)
+
   </script>
 </body>
